@@ -47,7 +47,7 @@ body::before {
   mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 75%);
 }
 
-/* ----- ОБЛЕГЧЁННЫЙ ШУМ (pattern, не фильтр) ----- */
+/* ----- ОБЛЕГЧЁННЫЙ ШУМ (pattern) ----- */
 body::after {
   content: "";
   position: fixed;
@@ -61,33 +61,33 @@ body::after {
   mix-blend-mode: overlay;
 }
 
-/* ----- ПЛАВАЮЩИЕ ГРАДИЕНТЫ ----- */
+/* ----- ПЛАВАЮЩИЕ ГРАДИЕНТЫ (оптимизированные) ----- */
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.18;
+  filter: blur(35px);
+  opacity: 0.15;
   pointer-events: none;
   z-index: 0;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 .glow-1 {
-  width: 55vw;
-  height: 55vw;
+  width: 50vw;
+  height: 50vw;
   background: radial-gradient(circle, rgba(70, 130, 200, 0.45) 0%, transparent 70%);
   top: -15%;
   left: -10%;
-  animation: floatGlow 20s ease-in-out infinite alternate;
+  animation: floatGlow 30s ease-in-out infinite alternate;
 }
 
 .glow-2 {
-  width: 48vw;
-  height: 48vw;
+  width: 42vw;
+  height: 42vw;
   background: radial-gradient(circle, rgba(180, 140, 80, 0.25) 0%, transparent 70%);
   bottom: -8%;
   right: -8%;
-  animation: floatGlow 24s ease-in-out infinite alternate-reverse;
+  animation: floatGlow 35s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes floatGlow {
@@ -95,7 +95,7 @@ body::after {
     transform: translate3d(0, 0, 0) scale(1);
   }
   100% {
-    transform: translate3d(5vw, -5vh, 0) scale(1.1);
+    transform: translate3d(3vw, -3vh, 0) scale(1.05);
   }
 }
 
@@ -129,31 +129,35 @@ h1, h2, h3 {
   letter-spacing: -0.03em;
 }
 
-/* ----- СТЕКЛЯННЫЕ ПАНЕЛИ ----- */
+/* ----- СТЕКЛЯННЫЕ ПАНЕЛИ (облегчённые) ----- */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   border-radius: 2.5rem;
   box-shadow: var(--shadow-card);
-  transition: all 0.4s var(--transition-smooth);
+  transition: transform 0.3s ease, box-shadow 0.3s;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-/* ----- КАРТОЧКИ ----- */
+/* ----- КАРТОЧКИ (размытие только при наведении) ----- */
 .glass-card {
-  background: rgba(18, 24, 34, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(18, 24, 34, 0.65);
   border: 1px solid rgba(80, 120, 160, 0.2);
   border-radius: 2rem;
   padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.4s;
+  transition: transform 0.3s ease, box-shadow 0.3s, backdrop-filter 0.2s;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .glass-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 35px 55px -20px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(100, 150, 220, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(100,150,220,0.4);
 }
 
 /* ----- КОНТЕЙНЕР ----- */
@@ -407,7 +411,7 @@ footer {
   z-index: 2;
 }
 
-/* ----- АДАПТИВНОСТЬ ----- */
+/* ----- АДАПТИВНОСТЬ (мобильные) ----- */
 @media (max-width: 768px) {
   .site-header {
     padding: 0.8rem 1.5rem;
@@ -421,10 +425,24 @@ footer {
     padding: 6rem 0 3rem;
   }
 
+  /* Полностью отключаем backdrop-filter на мобильных */
   .glass-panel,
-  .glass-card {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 1.5rem;
+  .glass-card,
+  .site-header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(10, 14, 20, 0.85);
+  }
+  
+  .glass-card:hover {
+    backdrop-filter: none !important;
+    transform: none;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Отключаем анимацию градиентов */
+  .ambient-glow {
+    animation: none !important;
+    opacity: 0.1;
   }
 }

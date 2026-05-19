@@ -29,26 +29,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
-  /* Дополнительный фоновый градиент для глубины */
   background-attachment: fixed;
 }
 
-/* ----- АНИМИРОВАННАЯ СЕТКА (оставляем) ----- */
+/* ----- ЛЁГКАЯ СЕТКА ----- */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(35, 55, 80, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35, 55, 80, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(35, 55, 80, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35, 55, 80, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.5;
   mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 75%);
 }
 
-/* ----- ОБЛЕГЧЁННЫЙ ШУМ (без тяжёлого SVG) ----- */
+/* ----- ОБЛЕГЧЁННЫЙ ШУМ (pattern, не фильтр) ----- */
 body::after {
   content: "";
   position: fixed;
@@ -62,14 +61,15 @@ body::after {
   mix-blend-mode: overlay;
 }
 
-/* ----- ПЛАВАЮЩИЕ ГРАДИЕНТЫ (уменьшены, но заметны) ----- */
+/* ----- ПЛАВАЮЩИЕ ГРАДИЕНТЫ ----- */
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(50px);
+  filter: blur(40px);
   opacity: 0.18;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 .glow-1 {
@@ -92,14 +92,13 @@ body::after {
 
 @keyframes floatGlow {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   100% {
-    transform: translate(5vw, -5vh) scale(1.1);
+    transform: translate3d(5vw, -5vh, 0) scale(1.1);
   }
 }
 
-/* Отключаем анимацию, если пользователь предпочитает уменьшенное движение */
 @media (prefers-reduced-motion: reduce) {
   .glow-1,
   .glow-2 {
@@ -232,17 +231,27 @@ h1, h2, h3 {
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .btn-primary {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
 }
 
 .btn-primary:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  border-radius: 0;
+  padding: 0 0 4px;
+  backdrop-filter: none;
 }
 
 /* ----- СЕТКА КАРТОЧЕК ----- */
@@ -253,7 +262,7 @@ h1, h2, h3 {
   margin-top: 3rem;
 }
 
-/* ----- СТИЛИ ДЛЯ СТРАНИЦ ----- */
+/* ----- СТРАНИЦЫ ----- */
 .page-section {
   padding: 8rem 0 4rem;
 }
@@ -275,6 +284,20 @@ h1, h2, h3 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .text-secondary {
@@ -335,6 +358,13 @@ h1, h2, h3 {
   color: white;
   font-family: var(--font-main);
   backdrop-filter: blur(10px);
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-cold);
 }
 
 /* ----- ШАГИ ----- */
@@ -373,19 +403,28 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   text-align: center;
   color: var(--text-muted);
+  position: relative;
+  z-index: 2;
 }
 
-/* ----- МЕДИАЗАПРОСЫ (мобильные) ----- */
+/* ----- АДАПТИВНОСТЬ ----- */
 @media (max-width: 768px) {
   .site-header {
     padding: 0.8rem 1.5rem;
   }
 
   .nav-links {
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
   .page-section {
     padding: 6rem 0 3rem;
+  }
+
+  .glass-panel,
+  .glass-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
   }
 }

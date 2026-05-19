@@ -44,3 +44,14 @@ body::after {
     -webkit-backdrop-filter: blur(8px);
   }
 }
+/* Меньше размытия для панелей */
+.glass-panel,
+.glass-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Хедер оставим с более сильным размытием, но это допустимо */
+.site-header {
+  backdrop-filter: blur(18px);
+}

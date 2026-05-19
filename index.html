@@ -3,109 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>КОНТРАКТ · Цифровая платформа службы нового поколения</title>
-  <!-- Шрифт Manrope -->
+  <title>КОНТРАКТ · Главная</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Стили -->
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Фоновые градиенты -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
 
-  <!-- Sticky Header -->
   <header class="site-header">
-    <div class="logo">⚡ КОНТРАКТ<span>.РФ</span></div>
+    <a href="index.html" class="logo">⚡ КОНТРАКТ<span>.РФ</span></a>
     <nav>
-      <ul class="nav-links" id="navMenu">
-        <li><a href="#">О проекте</a></li>
-        <li><a href="#">Преимущества</a></li>
-        <li><a href="#">Платформа</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Контакты</a></li>
+      <ul class="nav-links">
+        <li><a href="about.html">О проекте</a></li>
+        <li><a href="platform.html">Платформа</a></li>
+        <li><a href="faq.html">FAQ</a></li>
       </ul>
-      <button class="burger" id="burgerBtn" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
     </nav>
   </header>
 
   <main>
-    <!-- Hero Screen -->
-    <section class="hero">
-      <div class="container hero-content">
-        <div class="hero-left">
-          <div class="hero-badge">Цифровая платформа</div>
-          <h1 class="hero-title">Служба по контракту<br>нового поколения</h1>
-          <p class="hero-subtitle">Технологичный трек отбора, подготовки и сопровождения. Military-grade цифровая экосистема.</p>
-          <div class="hero-actions">
-            <a href="#" class="btn btn-primary">Начать отбор</a>
-            <a href="#" class="btn btn-ghost">Узнать больше →</a>
-          </div>
-        </div>
-        <div class="hero-right">
-          <div class="glass-card hero-card">
-            <div class="card-header">
-              <span>ID: 27-ALPHA</span>
-              <span class="online-dot">● online</span>
-            </div>
-            <div class="card-status">Статус: активен</div>
-            <div class="card-info">Кандидатов сегодня: 1 248</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Преимущества -->
-    <section>
+    <section class="page-section">
       <div class="container">
-        <h2 class="section-title">Преимущества<br>контрактной службы</h2>
-        <div class="card-grid">
-          <div class="tilt-card reveal">
-            <h3>Стабильность</h3>
-            <p>Полное обеспечение, социальный пакет, жильё.</p>
-          </div>
-          <div class="tilt-card reveal">
-            <h3>Технологии</h3>
-            <p>Современное вооружение и цифровая подготовка.</p>
-          </div>
-          <div class="tilt-card reveal">
-            <h3>Карьера</h3>
-            <p>Прозрачный рост и персональный трекинг.</p>
-          </div>
+        <div class="hero-badge">Цифровая платформа</div>
+        <h1 class="hero-title">Служба по контракту<br>нового поколения</h1>
+        <p style="color: #b4c6dd; max-width: 600px; margin-bottom: 2rem; font-size: 1.2rem;">
+          Технологичный трек отбора, подготовки и сопровождения. Military-grade цифровая экосистема.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="btn btn-primary">Начать отбор</a>
+          <a href="about.html" style="color:white; border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:4px; text-decoration:none;">Узнать больше →</a>
         </div>
-      </div>
-    </section>
 
-    <!-- Цифровая платформа -->
-    <section>
-      <div class="container platform-split">
-        <div class="platform-left">
-          <h2 class="section-title">Цифровая платформа</h2>
-          <p class="text-secondary">Личный кабинет с биометрией, защищённые каналы, AI-ассистент.</p>
-          <div class="counter" id="counterUsers">0</div>
-          <div class="counter-label">активных пользователей</div>
-        </div>
-        <div class="glass-panel platform-security reveal">
-          <div class="security-title">🔐 Защита данных</div>
-          <div class="security-list">
-            <p>• ГОСТ-шифрование</p>
-            <p>• Многофакторная аутентификация</p>
+        <div class="card-grid" style="margin-top: 5rem;">
+          <div class="glass-card">
+            <h3>🚀 Стабильность</h3>
+            <p style="color: #b4c6dd; margin-top: 1rem;">Полное обеспечение, социальный пакет, жильё.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section>
-      <div class="container">
-        <h2 class="section-title">Часто задаваемые вопросы</h2>
-        <div class="glass-panel faq-panel reveal">
-          <p><strong>Как подать заявку?</strong> <span class="text-muted">— Через платформу за 5 минут.</span></p>
-          <p><strong>Сроки рассмотрения?</strong> <span class="text-muted">— До 3 рабочих дней.</span></p>
+          <div class="glass-card">
+            <h3>🛡️ Технологии</h3>
+            <p style="color: #b4c6dd; margin-top: 1rem;">Современное вооружение и цифровая подготовка.</p>
+          </div>
+          <div class="glass-card">
+            <h3>📈 Карьера</h3>
+            <p style="color: #b4c6dd; margin-top: 1rem;">Прозрачный рост и персональный трекинг.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -113,11 +57,13 @@
 
   <footer>
     <div class="container">
-      <p class="text-muted">© 2026 Контракт. Цифровая платформа службы. Все права защищены.</p>
+      <p>© 2026 Контракт. Цифровая платформа службы. Все права защищены.</p>
     </div>
   </footer>
 
-  <!-- Скрипты -->
-  <script src="./app.js"></script>
+  <!-- Скрипты GSAP и ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

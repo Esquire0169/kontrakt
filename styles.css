@@ -1,4 +1,6 @@
-/* ----- ГЛОБАЛЬНЫЕ СБРОСЫ И ПЕРЕМЕННЫЕ ----- */
+/* ===========================
+   ГЛОБАЛЬНЫЕ СБРОСЫ И ПЕРЕМЕННЫЕ
+   =========================== */
 * {
   margin: 0;
   padding: 0;
@@ -10,15 +12,12 @@
   --surface-dark: rgba(10, 14, 20, 0.75);
   --glass-border: rgba(80, 120, 160, 0.18);
   --glass-bg: rgba(12, 18, 28, 0.55);
-  --glass-bg-hover: rgba(18, 26, 38, 0.7);
   --text-primary: #f0f4fa;
   --text-secondary: #b4c6dd;
   --text-muted: #6b7d99;
   --accent-cold: #6c9fd1;
-  --accent-warm: #c9a063;
   --accent-glow: rgba(100, 150, 220, 0.25);
   --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(70, 110, 150, 0.25);
-  --shadow-elevated: 0 30px 55px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(90, 130, 180, 0.3);
   --font-main: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -30,13 +29,12 @@ body {
   line-height: 1.5;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   background: radial-gradient(circle at 30% 20%, #131c2c 0%, #080b10 70%);
   position: relative;
 }
 
-/* ----- АНИМИРОВАННЫЙ ШУМ И СЕТКА ----- */
+/* Анимированный шум и сетка */
 body::before {
   content: "";
   position: fixed;
@@ -71,7 +69,6 @@ body::after {
   pointer-events: none;
   z-index: 0;
 }
-
 .glow-1 {
   width: 70vw;
   height: 70vw;
@@ -80,7 +77,6 @@ body::after {
   left: -15%;
   animation: floatGlow 18s ease-in-out infinite alternate;
 }
-
 .glow-2 {
   width: 60vw;
   height: 60vw;
@@ -100,7 +96,9 @@ main {
   z-index: 2;
 }
 
-/* ----- ТИПОГРАФИКА ----- */
+/* ===========================
+   ТИПОГРАФИКА
+   =========================== */
 h1, h2, h3 {
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -134,7 +132,9 @@ h1, h2, h3 {
   position: relative;
 }
 
-/* ----- HEADER ----- */
+/* ===========================
+   HEADER
+   =========================== */
 .site-header {
   position: fixed;
   top: 1.5rem;
@@ -143,7 +143,7 @@ h1, h2, h3 {
   width: calc(100% - 3rem);
   max-width: 1200px;
   z-index: 100;
-  background: rgba(8, 12, 18, 0.65);
+  background: rgba(8, 12, 18, 0.75);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(70, 110, 150, 0.25);
@@ -152,7 +152,6 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.4s ease;
 }
 
 .logo {
@@ -163,8 +162,8 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
 }
-
 .logo span {
   color: var(--accent-cold);
   font-weight: 600;
@@ -175,7 +174,6 @@ h1, h2, h3 {
   gap: 2rem;
   list-style: none;
 }
-
 .nav-links a {
   text-decoration: none;
   color: var(--text-secondary);
@@ -184,54 +182,17 @@ h1, h2, h3 {
   transition: color 0.3s;
   position: relative;
 }
-
 .nav-links a:hover {
   color: white;
 }
 
-.burger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-}
-
-.burger span {
-  width: 28px;
-  height: 2px;
-  background: white;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-/* ----- HERO ----- */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+/* ===========================
+   ОБЩИЕ СТИЛИ ДЛЯ СТРАНИЦ
+   =========================== */
+.page-section {
+  padding: 8rem 0 4rem;
   position: relative;
-  padding-top: 7rem;
 }
-
-.hero-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 3rem;
-}
-
-.hero-left {
-  flex: 1 1 500px;
-}
-
-.hero-right {
-  flex: 1 1 340px;
-  display: flex;
-  justify-content: center;
-}
-
 .hero-badge {
   font-weight: 600;
   color: var(--accent-cold);
@@ -239,61 +200,17 @@ h1, h2, h3 {
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
-
 .hero-title {
   font-size: clamp(3.5rem, 8vw, 6rem);
   font-weight: 800;
   line-height: 1;
   margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 20%, #a0bbd9 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.hero-subtitle {
-  color: var(--text-secondary);
-  max-width: 480px;
-  margin-bottom: 2rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.glass-card {
-  background: rgba(14, 20, 30, 0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 2.5rem;
-  padding: 2rem;
-  width: 100%;
-  max-width: 380px;
-  box-shadow: 0 30px 45px -20px black;
-}
-
-.hero-card .card-header {
-  display: flex;
-  justify-content: space-between;
-  color: #a0bbd9;
-  margin-bottom: 1rem;
-}
-
-.online-dot {
-  color: #6c9fd1;
-}
-
-.card-status {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-.card-info {
-  color: var(--text-secondary);
-}
-
-/* ----- КНОПКИ ----- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -303,151 +220,58 @@ h1, h2, h3 {
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  backdrop-filter: blur(10px);
 }
-
 .btn-primary {
   background: rgba(255,255,255,0.08);
-  color: white;
   border-color: rgba(255,255,255,0.25);
 }
-
 .btn-primary:hover {
   background: rgba(255,255,255,0.15);
   border-color: rgba(255,255,255,0.5);
   transform: translateY(-2px);
 }
 
-.btn-ghost {
-  color: white;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  padding-bottom: 4px;
-  background: transparent;
-  border-radius: 0;
-  backdrop-filter: none;
-}
-
-/* ----- КАРТОЧКИ С 3D TILT ----- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
-
-.tilt-card {
+.glass-card {
   background: rgba(18, 24, 34, 0.5);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(80,120,160,0.2);
   border-radius: 2rem;
   padding: 2rem;
-  transition: transform 0.2s ease, box-shadow 0.4s;
-  will-change: transform;
+  transition: transform 0.3s ease, box-shadow 0.4s;
+}
+.glass-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 35px 55px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(100,150,220,0.5);
 }
 
-.tilt-card h3 {
-  margin-bottom: 0.5rem;
-}
-
-.tilt-card p {
-  color: var(--text-secondary);
-}
-
-/* ----- ПЛАТФОРМА ----- */
-.platform-split {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  align-items: center;
-}
-
-.platform-left {
-  flex: 1;
-}
-
-.platform-security {
-  flex: 1;
-  padding: 2.5rem;
-}
-
-.security-title {
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.security-list p {
-  margin-top: 0.5rem;
-}
-
-.text-secondary {
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-}
-
-.counter {
-  font-size: 3rem;
-  font-weight: 800;
-  color: white;
-}
-
-.counter-label {
-  color: var(--text-muted);
-}
-
-/* ----- FAQ ----- */
-.faq-panel {
-  padding: 2rem;
-  margin-top: 2rem;
-}
-
-.faq-panel p {
-  margin-bottom: 1rem;
-}
-
-.text-muted {
-  color: var(--text-muted);
-}
-
-/* ----- FOOTER ----- */
 footer {
   padding: 3rem 0;
   border-top: 1px solid rgba(255,255,255,0.05);
   text-align: center;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 2;
 }
 
-/* ----- АНИМАЦИИ ПОЯВЛЕНИЯ ----- */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.reveal-active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ----- МЕДИА-ЗАПРОСЫ (мобильные) ----- */
+/* Адаптивность */
 @media (max-width: 768px) {
+  .site-header {
+    padding: 0.8rem 1.5rem;
+  }
   .nav-links {
-    display: none;
-    flex-direction: column;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(30px);
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    border-radius: 2rem;
-    padding: 2rem;
+    gap: 1rem;
   }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .burger {
-    display: flex;
+  .page-section {
+    padding: 6rem 0 3rem;
   }
 }

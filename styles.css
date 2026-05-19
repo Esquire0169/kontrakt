@@ -1,153 +1,46 @@
-/* styles.css — общие стили для всех страниц */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg-deep: #0a0c10;
-  --glass-border: rgba(80, 120, 160, 0.18);
-  --glass-bg: rgba(12, 18, 28, 0.55);
-  --text-primary: #f0f4fa;
-  --text-secondary: #b4c6dd;
-  --text-muted: #6b7d99;
-  --accent-cold: #6c9fd1;
-  --accent-warm: #c9a063;
-  --shadow-card: 0 20px 40px -15px rgba(0,0,0,0.7), 0 0 0 1px rgba(70,110,150,0.25);
-  --font-main: 'Manrope', system-ui, -apple-system, sans-serif;
-}
-body {
-  background: radial-gradient(circle at 30% 20%, #131c2c 0%, #080b10 70%);
-  font-family: var(--font-main);
-  color: var(--text-primary);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  position: relative;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(rgba(35,55,80,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(35,55,80,0.08) 1px, transparent 1px);
-  background-size: 50px 50px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.45;
-  mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 75%);
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch"/></filter><rect width="300" height="300" filter="url(%23noise)" opacity="0.04"/></svg>');
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-}
+/* Заменяем огромные glow на облегчённые */
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.2;
+  filter: blur(60px); /* Было 100px */
+  opacity: 0.15;       /* Чуть прозрачнее */
   pointer-events: none;
   z-index: 0;
 }
-.glow-1 { width: 70vw; height: 70vw; background: radial-gradient(circle, rgba(70,130,200,0.4) 0%, transparent 70%); top: -20%; left: -15%; animation: floatGlow 18s infinite alternate; }
-.glow-2 { width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(180,140,80,0.2) 0%, transparent 70%); bottom: -10%; right: -10%; animation: floatGlow 22s infinite alternate-reverse; }
-@keyframes floatGlow { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(5vw,-5vh) scale(1.2); } }
-main { position: relative; z-index: 2; }
-.container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
-.section-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin-bottom: 1.5rem;
-  background: linear-gradient(180deg, #ffffff 20%, #a0bbd9 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.glow-1 {
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(70,130,200,0.4) 0%, transparent 70%);
+  top: -10%;
+  left: -10%;
+  animation: floatGlow 25s ease-in-out infinite alternate; /* Чуть медленнее */
 }
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--glass-border);
-  border-radius: 2.5rem;
-  box-shadow: var(--shadow-card);
-  transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+.glow-2 {
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(180,140,80,0.2) 0%, transparent 70%);
+  bottom: -5%;
+  right: -5%;
+  animation: floatGlow 30s ease-in-out infinite alternate-reverse;
 }
-.site-header {
-  position: fixed;
-  top: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 3rem);
-  max-width: 1200px;
-  z-index: 100;
-  background: rgba(8,12,18,0.75);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(70,110,150,0.25);
-  border-radius: 100px;
-  padding: 0.8rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+/* Отключаем анимацию, если пользователь предпочитает без движения */
+@media (prefers-reduced-motion: reduce) {
+  .glow-1, .glow-2 {
+    animation: none;
+  }
 }
-.logo { font-weight: 800; font-size: 1.4rem; color: white; text-decoration: none; }
-.logo span { color: var(--accent-cold); }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: color 0.3s; }
-.nav-links a:hover { color: white; }
-.page-section { padding: 8rem 0 4rem; }
-.hero-badge { font-weight: 600; color: var(--accent-cold); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem; }
-.hero-title { font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 800; line-height: 1; margin-bottom: 1.5rem; background: linear-gradient(180deg, #ffffff 20%, #a0bbd9 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.9rem 2.2rem;
-  border-radius: 60px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white;
-  backdrop-filter: blur(10px);
+
+/* Убираем шумовой псевдоэлемент или заменяем на более лёгкий */
+body::after {
+  display: none; /* Полностью отключаем шум */
 }
-.btn-primary { background: rgba(255,255,255,0.08); }
-.btn-primary:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-.glass-card {
-  background: rgba(18,24,34,0.5);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(80,120,160,0.2);
-  border-radius: 2rem;
-  padding: 2rem;
-  transition: all 0.3s;
-}
-.glass-card:hover { transform: translateY(-10px); box-shadow: 0 35px 55px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(100,150,220,0.5); }
-.counter { font-size: 3rem; font-weight: 800; color: white; }
-.text-secondary { color: var(--text-secondary); }
-.text-muted { color: var(--text-muted); }
-footer { padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-muted); }
-.steps-list { list-style: none; counter-reset: step; }
-.steps-list li { counter-increment: step; margin-bottom: 2rem; padding-left: 3rem; position: relative; }
-.steps-list li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; background: var(--accent-cold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #0a0c10; }
-.faq-item { margin-bottom: 1.5rem; }
-.faq-item h3 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-.faq-item p { color: var(--text-secondary); margin-top: 0.5rem; display: none; }
-.faq-item.active p { display: block; }
-.form-group { margin-bottom: 1.5rem; }
-.form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); }
-.form-group input, .form-group select, .form-group textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--glass-border);
-  border-radius: 1rem;
-  color: white;
-  font-family: var(--font-main);
-  backdrop-filter: blur(10px);
-}
+
+/* Ограничиваем backdrop-filter для мобильных */
 @media (max-width: 768px) {
-  .site-header { padding: 0.8rem 1.5rem; }
-  .nav-links { gap: 1rem; }
-  .page-section { padding: 6rem 0 3rem; }
+  .glass-panel,
+  .glass-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 }

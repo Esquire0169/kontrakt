@@ -248,11 +248,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ⚠️ Сайт не является государственным органом. Информация носит справочный характер. Официальный сайт Минобороны России: <a href="https://mil.ru" target="_blank" rel="noopener noreferrer">mil.ru</a>. Перед подачей заявки ознакомьтесь с <a href="/privacy">Политикой конфиденциальности</a> и <a href="/terms">Пользовательским соглашением</a>.
       </div>
     `;
-    const header = document.querySelector('.site-header');
-    if (header) {
-      header.parentNode.insertBefore(bar, header);
+    const footer = document.querySelector('footer');
+    if (footer) {
+    footer.parentNode.insertBefore(bar, footer);
     } else {
-      document.body.prepend(bar);
+    document.body.appendChild(bar);
     }
   }
   if (!document.querySelector('.disclaimer-bar')) {

@@ -105,13 +105,24 @@ main { position: relative; z-index: 2; }
 h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
 
 .section-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   margin-bottom: 1.5rem;
   background: linear-gradient(180deg, #ffffff 20%, #a0bbd9 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.03em;
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 20%, #a0bbd9 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ----- СТЕКЛЯННЫЕ ПАНЕЛИ ----- */
@@ -231,7 +242,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
 /* ----- СЕТКА КАРТОЧЕК ----- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -247,17 +258,6 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
   margin-bottom: 1rem;
 }
 
-.hero-title {
-  font-size: clamp(3.5rem, 8vw, 6rem);
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(180deg, #ffffff 20%, #a0bbd9 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .hero-subtitle {
   color: var(--text-secondary);
   max-width: 600px;
@@ -269,7 +269,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
 
 .text-secondary { color: var(--text-secondary); }
 .text-muted { color: var(--text-muted); }
-.counter { font-size: 3rem; font-weight: 800; color: white; }
+.counter { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: white; }
 
 /* ----- FAQ ----- */
 .faq-item { margin-bottom: 1.5rem; }
@@ -279,15 +279,16 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.1rem;
 }
 
 .faq-item p { color: var(--text-secondary); margin-top: 0.5rem; display: none; }
 .faq-item.active p { display: block; }
 
 /* ----- ФОРМА ----- */
-.form-group { margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.2rem; }
 
-.form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); }
+.form-group label { display: block; margin-bottom: 0.4rem; color: var(--text-secondary); }
 
 .form-group input,
 .form-group select,
@@ -355,8 +356,8 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
 
 .lightbox-close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1.5rem;
   font-size: 2.5rem;
   color: white;
   cursor: pointer;
@@ -372,25 +373,52 @@ footer {
   z-index: 2;
 }
 
-/* ----- АДАПТИВНОСТЬ ----- */
+/* ----- АДАПТИВНАЯ МОБИЛЬНАЯ ВЕРСИЯ ----- */
 @media (max-width: 768px) {
-  .site-header { padding: 0.8rem 1.5rem; }
-  .nav-links { gap: 1.2rem; }
-  .page-section { padding: 6rem 0 3rem; }
+  .container { padding: 0 1.2rem; }
+
+  .site-header {
+    padding: 0.6rem 1.2rem;
+    top: 0.8rem;
+    width: calc(100% - 1.5rem);
+    border-radius: 80px;
+  }
+
+  .logo { font-size: 1.2rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.85rem; }
+
+  .page-section { padding: 5rem 0 2.5rem; }
+
+  .hero-title { font-size: 2.4rem; }
+  .hero-subtitle { font-size: 1rem; }
+
+  .card-grid { grid-template-columns: 1fr; gap: 1.2rem; }
 
   .glass-panel,
-  .glass-card,
-  .site-header {
+  .glass-card {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(10, 14, 20, 0.85);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
   }
 
   .glass-card:hover {
-    backdrop-filter: none !important;
     transform: none;
     box-shadow: var(--shadow-card);
   }
 
-  .ambient-glow { animation: none !important; opacity: 0.1; }
+  .ambient-glow { animation: none !important; opacity: 0.08; }
+
+  .gallery-grid { gap: 1rem; }
+
+  .lightbox-close { top: 0.8rem; right: 1rem; font-size: 2rem; }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .btn { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
 }

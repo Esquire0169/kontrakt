@@ -101,22 +101,26 @@
         <form id="applyForm" class="glass-panel" style="padding: 2rem;">
           <div class="form-group">
             <label for="name">ФИО</label>
-            <input type="text" id="name" required>
+            <input type="text" id="name" required placeholder="Иванов Иван Иванович">
           </div>
           <div class="form-group">
             <label for="age">Возраст</label>
-            <input type="number" id="age" min="18" max="62" required>
+            <input type="number" id="age" min="18" max="62" required placeholder="25">
           </div>
           <div class="form-group">
             <label for="phone">Телефон</label>
-            <input type="tel" id="phone" required>
+            <input type="tel" id="phone" required placeholder="+7 999 123-45-67">
           </div>
           <div class="form-group">
             <label for="city">Город</label>
-            <input type="text" id="city" required>
+            <input type="text" id="city" required placeholder="Москва">
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить</button>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
+          <p style="margin-top: 1rem; text-align: center;">
+            <a href="#" id="whatsappLink" class="text-secondary" style="text-decoration: underline;">Написать в WhatsApp</a>
+          </p>
         </form>
+        <p id="formStatus" style="text-align: center; margin-top: 1rem; color: var(--accent-cold); display: none;"></p>
       </div>
     </section>
   </main>
@@ -130,12 +134,5 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="./app.js"></script>
-  <script>
-    document.getElementById('applyForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Заявка принята! Инструктор свяжется с вами в течение 24 часов.');
-      this.reset();
-    });
-  </script>
 </body>
 </html>

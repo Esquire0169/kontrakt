@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>КОНТРАКТ · Цифровая платформа службы нового поколения</title>
+  <title>КОНТРАКТ · Служба по контракту нового поколения</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,39 +17,106 @@
     <a href="./index.html" class="logo">⚡ КОНТРАКТ<span>.РФ</span></a>
     <nav>
       <ul class="nav-links">
-        <li><a href="./about.html">Условия</a></li>
-        <li><a href="./apply.html">Подать заявку</a></li>
-        <li><a href="./payments.html">Выплаты</a></li>
-        <li><a href="./faq.html">FAQ</a></li>
+        <li><a href="./gallery.html">Галерея</a></li>
+        <li><a href="./faq-contacts.html">Вопросы и контакты</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="page-section hero">
       <div class="container">
         <div class="hero-badge">Цифровая платформа</div>
         <h1 class="hero-title">Служба по контракту<br>нового поколения</h1>
         <p class="hero-subtitle">Технологичный трек отбора, подготовки и сопровождения. Military-grade цифровая экосистема.</p>
         <div class="hero-actions">
-          <a href="./apply.html" class="btn btn-primary">Начать отбор</a>
-          <a href="./about.html" class="btn btn-ghost">Узнать условия →</a>
+          <a href="#apply" class="btn btn-primary">Оставить заявку</a>
+          <a href="./faq-contacts.html" class="btn btn-ghost">Узнать больше →</a>
         </div>
+      </div>
+    </section>
 
-        <div class="card-grid" style="margin-top: 5rem;">
+    <!-- УСЛОВИЯ -->
+    <section class="page-section">
+      <div class="container">
+        <h2 class="section-title">Ключевые условия</h2>
+        <div class="card-grid">
           <div class="glass-card">
-            <h3>🚀 Стабильность</h3>
-            <p>Полное обеспечение, социальный пакет, служебное жильё.</p>
+            <h3>📋 Требования</h3>
+            <p>Возраст 18–62 лет, годность А/Б, образование от 9 классов, без судимости.</p>
           </div>
           <div class="glass-card">
-            <h3>🛡️ Технологии</h3>
+            <h3>🏠 Жильё</h3>
+            <p>Служебное жильё или компенсация аренды, военная ипотека через 3 года.</p>
+          </div>
+          <div class="glass-card">
+            <h3>🎓 Образование</h3>
+            <p>Бюджетные места для детей в вузах, переподготовка и карьерный рост.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ВЫПЛАТЫ -->
+    <section class="page-section">
+      <div class="container">
+        <h2 class="section-title">Денежное довольствие</h2>
+        <div class="glass-panel" style="padding: 2rem; margin-bottom: 2rem;">
+          <div class="counter" id="counterBonus">до 2 800 000 ₽</div>
+          <p class="text-secondary">Единовременная выплата при заключении контракта</p>
+        </div>
+        <div class="glass-panel" style="padding: 2rem;">
+          <p class="text-secondary">Ежемесячно: от 170 000 до 200 000 ₽ в зоне СВО</p>
+          <p class="text-muted" style="margin-top: 1rem;">Дополнительные выплаты за выполнение боевых задач</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="page-section">
+      <div class="container">
+        <h2 class="section-title">Преимущества службы</h2>
+        <div class="card-grid">
+          <div class="glass-card">
+            <h3>🛡️ Стабильность</h3>
+            <p>Полный соцпакет, страхование, медицинское обслуживание.</p>
+          </div>
+          <div class="glass-card">
+            <h3>🤖 Технологии</h3>
             <p>Современное вооружение и цифровая подготовка.</p>
           </div>
           <div class="glass-card">
             <h3>📈 Карьера</h3>
-            <p>Прозрачный рост и персональный трекинг.</p>
+            <p>Прозрачный рост, персональный трекинг, обучение.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ФОРМА ЗАЯВКИ -->
+    <section class="page-section" id="apply">
+      <div class="container">
+        <h2 class="section-title">Оставить заявку</h2>
+        <form id="applyForm" class="glass-panel" style="padding: 2rem;">
+          <div class="form-group">
+            <label for="name">ФИО</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Возраст</label>
+            <input type="number" id="age" min="18" max="62" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="city">Город</label>
+            <input type="text" id="city" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить</button>
+        </form>
       </div>
     </section>
   </main>
@@ -63,5 +130,12 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="./app.js"></script>
+  <script>
+    document.getElementById('applyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Заявка принята! Инструктор свяжется с вами в течение 24 часов.');
+      this.reset();
+    });
+  </script>
 </body>
 </html>

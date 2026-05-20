@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ========== 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ==========
-  const animatedItems = document.querySelectorAll('.glass-card, .glass-panel, .section-title, .hero-title');
-  
-  animatedItems.forEach((el, index) => {
+  // ---------- АНИМАЦИЯ ПОЯВЛЕНИЯ ----------
+  const animatedItems = document.querySelectorAll('.glass-card, .glass-panel, .section-title, .hero-title, .gallery-item');
+  animatedItems.forEach((el) => {
     gsap.fromTo(el,
       { opacity: 0, y: 30 },
       {
@@ -16,14 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: el,
           start: "top 88%",
           toggleActions: "play none none none",
-          // Добавьте микро-задержку для волны (по желанию):
-          // delay: index * 0.03
         }
       }
     );
   });
 
-  // ========== 2. ПАРАЛЛАКС ФОНА (только десктоп, без GSAP) ==========
+  // ---------- ПАРАЛЛАКС (только десктоп) ----------
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   const glow1 = document.querySelector('.glow-1');
   const glow2 = document.querySelector('.glow-2');
@@ -42,52 +39,57 @@ document.addEventListener('DOMContentLoaded', () => {
         ticking = true;
       }
     });
-  } else if (glow1 && glow2) {
-    // На тач-устройствах сбрасываем трансформации
-    glow1.style.transform = '';
-    glow2.style.transform = '';
   }
 
-  // ========== 3. FAQ АККОРДЕОН ==========
+  // ---------- FAQ АККОРДЕОН ----------
   document.querySelectorAll('.faq-item h3').forEach(header => {
     header.addEventListener('click', () => {
       const item = header.parentElement;
       const isActive = item.classList.contains('active');
-      // Закрываем все
       document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-      // Открываем текущий, если был закрыт
-      if (!isActive) {
-        item.classList.add('active');
-      }
+      if (!isActive) item.classList.add('active');
     });
   });
 
-  // ========== 4. АНИМИРОВАННЫЙ СЧЁТЧИК ВЫПЛАТ ==========
+  // ---------- ЛАЙТБОКС ГАЛЕРЕИ ----------
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox) {
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => lightbox.classList.remove('active'));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.classList.remove('active');
+    });
+  }
+
+  // ---------- СЧЁТЧИК ----------
   const counterEl = document.getElementById('counterBonus');
   if (counterEl) {
     const target = 2800000;
     const duration = 1500;
     let startTime = null;
-
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
       const current = Math.floor(progress * target);
       counterEl.textContent = 'до ' + current.toLocaleString('ru-RU') + ' ₽';
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        counterEl.textContent = 'до 2 800 000 ₽';
-      }
+      if (progress < 1) requestAnimationFrame(step);
+      else counterEl.textContent = 'до 2 800 000 ₽';
     };
-
-    const counterObserver = new IntersectionObserver((entries) => {
+    const obs = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         requestAnimationFrame(step);
-        counterObserver.unobserve(counterEl);
+        obs.unobserve(counterEl);
       }
     }, { threshold: 0.5 });
-
-    counterObserver.observe(counterEl);
+    obs.observe(counterEl);
   }
 });

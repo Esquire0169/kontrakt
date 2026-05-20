@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>КОНТРАКТ · Галерея</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <header class="site-header">
+    <a href="./index.html" class="logo">⚡ КОНТРАКТ<span>.РФ</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="./gallery.html">Галерея</a></li>
+        <li><a href="./faq-contacts.html">Вопросы и контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-section">
+      <div class="container">
+        <h1 class="section-title">Галерея</h1>
+        <p class="text-secondary" style="margin-bottom: 2rem;">Фотографии наших бойцов — СВО, учения, техника.</p>
+        <div class="gallery-grid">
+          <!-- Заглушки изображений (можно заменить на свои) -->
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1544211393-7fdc3b9b5b3d?w=600&h=400&fit=crop" alt="Солдат 1" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1605806612544-6db5e6a9b1e2?w=600&h=400&fit=crop" alt="Солдат 2" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1585076641294-6f4e0c1e1f7b?w=600&h=400&fit=crop" alt="Техника" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1563208068-7cabb096d0c1?w=600&h=400&fit=crop" alt="Учения" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1580894906475-8f0c8c3e0b0a?w=600&h=400&fit=crop" alt="Солдат 3" loading="lazy">
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1590086782950-3a3a4e9c3b0e?w=600&h=400&fit=crop" alt="Техника 2" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Лайтбокс -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img">
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Контракт. Цифровая платформа службы. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

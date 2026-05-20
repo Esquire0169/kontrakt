@@ -250,9 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     const footer = document.querySelector('footer');
     if (footer) {
-    footer.parentNode.insertBefore(bar, footer);
+      footer.parentNode.insertBefore(bar, footer);
     } else {
-    document.body.appendChild(bar);
+      document.body.appendChild(bar);
     }
   }
   if (!document.querySelector('.disclaimer-bar')) {

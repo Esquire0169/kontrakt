@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     const footer = document.querySelector('footer');
     if (footer) {
-      footer.parentNode.insertBefore(bar, footer);
+      footer.parentNode.insertBefore(bar, footer.nextSibling);
     } else {
       document.body.appendChild(bar);
     }

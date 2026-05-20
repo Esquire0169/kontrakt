@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- СЧЁТЧИК ----------
+  // ---------- СЧЁТЧИК ВЫПЛАТ ----------
   const counterEl = document.getElementById('counterBonus');
   if (counterEl) {
     const target = 2800000;
@@ -91,5 +91,70 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { threshold: 0.5 });
     obs.observe(counterEl);
+  }
+
+  // ---------- ОТПРАВКА ФОРМЫ В TELEGRAM ----------
+  const form = document.getElementById('applyForm');
+  if (form) {
+    const statusEl = document.getElementById('formStatus');
+    const whatsappLink = document.getElementById('whatsappLink');
+
+    // Обновление ссылки WhatsApp при изменении полей
+    const updateWhatsappLink = () => {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const age = document.getElementById('age').value;
+      const city = document.getElementById('city').value;
+      const text = `Заявка на контракт:%0AФИО: ${name}%0AВозраст: ${age}%0AТелефон: ${phone}%0AГород: ${city}`;
+      whatsappLink.href = `https://wa.me/79161234567?text=${text}`; // замените на свой номер
+    };
+
+    document.querySelectorAll('#applyForm input').forEach(input => {
+      input.addEventListener('input', updateWhatsappLink);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const age = document.getElementById('age').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const city = document.getElementById('city').value.trim();
+
+      if (!name || !age || !phone || !city) {
+        statusEl.textContent = 'Пожалуйста, заполните все поля.';
+        statusEl.style.display = 'block';
+        return;
+      }
+
+      // Формируем сообщение
+      const message = `📩 Новая заявка с сайта КОНТРАКТ:%0AИмя: ${name}%0AВозраст: ${age}%0AТелефон: ${phone}%0AГород: ${city}`;
+
+      // Telegram Bot API
+      const BOT_TOKEN = 'YOUR_BOT_TOKEN'; // замените на токен вашего бота
+      const CHAT_ID = 'YOUR_CHAT_ID';     // замените на ID чата (или @username)
+
+      try {
+        statusEl.textContent = 'Отправка...';
+        statusEl.style.display = 'block';
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+          })
+        });
+        const data = await response.json();
+        if (data.ok) {
+          statusEl.textContent = 'Заявка успешно отправлена! Мы свяжемся с вами.';
+          form.reset();
+        } else {
+          throw new Error('Ошибка отправки');
+        }
+      } catch (error) {
+        statusEl.textContent = 'Не удалось отправить. Попробуйте позже или напишите в WhatsApp.';
+      }
+    });
   }
 });

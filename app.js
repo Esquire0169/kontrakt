@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========== 8. COOKIE БАННЕР (динамическая вставка) ==========
+  // ========== 8. COOKIE БАННЕР ==========
   function createCookieBanner() {
     const banner = document.createElement('div');
     banner.id = 'cookieConsent';
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     banner.innerHTML = `
       <div class="cookie-content">
         <p id="cookieTitle">Мы используем cookie</p>
-        <p>Продолжая использовать сайт, вы соглашаетесь на обработку файлов cookie в целях аналитики и улучшения работы. Подробнее — в нашей <a href="/privacy" target="_blank">Политике конфиденциальности</a>.</p>
+        <p>Продолжая использовать сайт, вы соглашаетесь на обработку файлов cookie в целях аналитики и улучшения работы. Подробнее — в нашей <a href="./privacy.html" target="_blank">Политике конфиденциальности</a>.</p>
         <div class="cookie-buttons">
           <button id="cookieAcceptAll" class="btn btn-primary" aria-label="Принять все cookie">Принять все</button>
           <button id="cookieSettingsBtn" class="btn btn-ghost" aria-label="Настроить cookie">Настроить</button>
@@ -210,13 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('cookieConsent', analytics ? 'all' : 'necessary');
     localStorage.setItem('cookieConsentDate', Date.now());
     hideBanner();
-    // Обновить статус аналитики, если включена
     if (analytics && typeof gtag === 'function') {
       gtag('consent', 'update', { 'analytics_storage': 'granted' });
-    }
-    if (analytics && typeof ym === 'function') {
-      // Для Метрики мы передаём параметр при инициализации, обновить сложно, но можно перезагрузить страницу или оставить так.
-      // В реальном кейсе можно переинициализировать счётчик с новым параметром.
     }
   }
 
@@ -238,18 +233,19 @@ document.addEventListener('DOMContentLoaded', () => {
     setConsent(analyticsCheck.checked);
   });
 
-  // ========== 9. ДИСКЛЕЙМЕР (динамическая вставка) ==========
+  // ========== 9. ДИСКЛЕЙМЕР ПОСЛЕ ФУТЕРА ==========
   function createDisclaimer() {
     const bar = document.createElement('div');
     bar.className = 'disclaimer-bar';
     bar.setAttribute('role', 'contentinfo');
     bar.innerHTML = `
       <div class="container">
-        ⚠️ Сайт не является государственным органом. Информация носит справочный характер. Официальный сайт Минобороны России: <a href="https://mil.ru" target="_blank" rel="noopener noreferrer">mil.ru</a>. Перед подачей заявки ознакомьтесь с <a href="/privacy">Политикой конфиденциальности</a> и <a href="/terms">Пользовательским соглашением</a>.
+        ⚠️ Сайт не является государственным органом. Информация носит справочный характер. Официальный сайт Минобороны России: <a href="https://mil.ru" target="_blank" rel="noopener noreferrer">mil.ru</a>. Перед подачей заявки ознакомьтесь с <a href="./privacy.html">Политикой конфиденциальности</a> и <a href="./terms.html">Пользовательским соглашением</a>.
       </div>
     `;
     const footer = document.querySelector('footer');
     if (footer) {
+      // Вставляем сразу после футера (на самый низ)
       footer.parentNode.insertBefore(bar, footer.nextSibling);
     } else {
       document.body.appendChild(bar);

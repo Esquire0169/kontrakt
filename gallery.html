@@ -15,8 +15,13 @@
 
   <header class="site-header">
     <a href="./index.html" class="logo">⚡ КОНТРАКТ<span>.РФ</span></a>
+    <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <nav>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navMenu">
         <li><a href="./gallery.html">Галерея</a></li>
         <li><a href="./faq-contacts.html">Вопросы и контакты</a></li>
       </ul>
@@ -29,7 +34,6 @@
         <h1 class="section-title">Галерея</h1>
         <p class="text-secondary" style="margin-bottom: 2rem;">Фотографии наших бойцов — СВО, учения, техника.</p>
         <div class="gallery-grid">
-          <!-- Заглушки изображений (можно заменить на свои) -->
           <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1544211393-7fdc3b9b5b3d?w=600&h=400&fit=crop" alt="Солдат 1" loading="lazy">
           </div>
@@ -53,7 +57,6 @@
     </section>
   </main>
 
-  <!-- Лайтбокс -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close">&times;</span>
     <img src="" alt="" class="lightbox-img">
